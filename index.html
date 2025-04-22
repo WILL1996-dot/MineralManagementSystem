@@ -4,6 +4,13 @@
 <title>LMMS Dashboard</title>
 <link rel="stylesheet" href="dashboard.css" />
 <script type="text/Javascript" src="dashboard.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+  const SUPABASE_URL = "https://your-project-id.supabase.co";
+  const SUPABASE_KEY = "your-anon-key";
+  const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+</script>
+
 </head>
 <body>
 <h1>WELCOME TO LMMS </h1>
