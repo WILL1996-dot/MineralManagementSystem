@@ -39,3 +39,32 @@ async function logOut() {
     ? error.message
     : "Logged out successfully.";
 }
+
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault()
+  const email = document.getElementById('login-email').value
+  const password = document.getElementById('login-password').value
+
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+
+  if (error) {
+    alert('Login error: ' + error.message)
+  } else {
+    alert('Login successful!')
+  }
+})
+
+document.getElementById('signup-form').addEventListener('submit', async (e) => {
+  e.preventDefault()
+  const email = document.getElementById('signup-email').value
+  const password = document.getElementById('signup-password').value
+
+  const { data, error } = await supabase.auth.signUp({ email, password })
+
+  if (error) {
+    alert('Signup error: ' + error.message)
+  } else {
+    alert('Signup successful! Please check your email.')
+  }
+})
+
