@@ -1,18 +1,26 @@
-<!DOCTYPE>
-</html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>LMMS Dashboard</title>
-<link rel="stylesheet" href="dashboard.css" />
-<script type="text/Javascript" src="dashboard.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-<script>
-  const SUPABASE_URL = "https://mudplvaigphenzayycsl.supabase.co";
-  const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11ZHBsdmFpZ3BoZW56YXl5Y3NsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzNjMxODEsImV4cCI6MjA2MDkzOTE4MX0.BQWNKTX1oqdoPlHjFIVik9hEi5BdsDYbHwvC19mbJxg";
-  const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-</script>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mineral Management Login</title>
+  <link rel="stylesheet" href="index.css" />
 </head>
 <body>
-<h1>WELCOME TO LMMS coming up pretty soon </h1>
+  <div class="container">
+    <h2>Mineral Management System</h2>
+
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
+
+    <button onclick="signUp()">Sign Up</button>
+    <button onclick="logIn()">Log In</button>
+    <button onclick="logOut()">Log Out</button>
+
+    <p id="message"></p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="index.js"></script>
 </body>
 </html>
