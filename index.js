@@ -1,12 +1,13 @@
 // Wait for DOM to be fully loaded before executing
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize Supabase with your credentials
-  const supabase = supabase.createClient(
+  window.supabase = supabase.createClient(
     'https://mudplvaigphenzayycsl.supabase.co',
     'EXPO_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11ZHBsdmFpZ3BoZW56YXl5Y3NsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUzNjMxODEsImV4cCI6MjA2MDkzOTE4MX0.BQWNKTX1oqdoPlHjFIVik9hEi5BdsDYbHwvC19mbJxg'
   );
 
   // Verify initialization
+  console.log("Supabase client:", window.supabase);
   console.log('Supabase initialized:', window.supabase ? 'Success' : 'Failed');
   
   // Add event listeners
