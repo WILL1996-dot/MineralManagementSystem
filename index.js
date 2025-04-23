@@ -1,12 +1,21 @@
-// Initialize Supabase
-const supabaseUrl = 'https://mudplvaigphenzayycsl.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11ZHBsdmFpZ3BoZW56YXl5Y3NsIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0NTM2MzE4MSwiZXhwIjoyMDYwOTM5MTgxfQ.69aRSlFopKOh9lFjPz8GZiiwCwwLzm8DapFpxSjpkAE';
-const supabase = createClient(supabaseUrl, supabaseKey);
+// Initialize Supabase FIRST
+const supabase = createClient(
+  'https://mudplvaigphenzayycsl.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11ZHBsdmFpZ3BoZW56YXl5Y3NsIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0NTM2MzE4MSwiZXhwIjoyMDYwOTM5MTgxfQ.69aRSlFopKOh9lFjPz8GZiiwCwwLzm8DapFpxSjpkAE'
+);
+
+// Check if Supabase initialized properly
+console.log('Supabase initialized:', supabase ? 'Yes' : 'No');
 
 // Auth functions
 async function signUp() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
+
+  if (!email || !password) {
+    document.getElementById("message").textContent = "Please fill in all fields";
+    return;
+  }
 
   try {
     const { data, error } = await supabase.auth.signUp({
@@ -16,9 +25,9 @@ async function signUp() {
 
     document.getElementById("message").textContent = error
       ? error.message
-      : "Signup successful! Check your email.";
+      : "Signup successful! Check your email for confirmation.";
   } catch (error) {
-    document.getElementById("message").textContent = error.message;
+    document.getElementById("message").textContent = "Signup failed: " + error.message;
   }
 }
 
@@ -26,22 +35,26 @@ async function logIn() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
+  if (!email || !password) {
+    document.getElementById("message").textContent = "Please fill in all fields";
+    return;
+  }
+
   try {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
-    document.getElementById("message").textContent = error
-      ? error.message
-      : "Login successful!";
-      
-    if (data?.user) {
-      // Redirect or update UI after successful login
-      window.location.href = 'dashboard.html'; // Example redirect
+    if (error) {
+      document.getElementById("message").textContent = error.message;
+    } else {
+      document.getElementById("message").textContent = "Login successful!";
+      // Redirect to dashboard or update UI
+      window.location.href = "dashboard.html";
     }
   } catch (error) {
-    document.getElementById("message").textContent = error.message;
+    document.getElementById("message").textContent = "Login failed: " + error.message;
   }
 }
 
@@ -51,19 +64,7 @@ async function logOut() {
     document.getElementById("message").textContent = error
       ? error.message
       : "Logged out successfully.";
-      
-    // Clear form fields on logout
-    document.getElementById("email").value = '';
-    document.getElementById("password").value = '';
   } catch (error) {
-    document.getElementById("message").textContent = error.message;
+    document.getElementById("message").textContent = "Logout failed: " + error.message;
   }
 }
-
-// Check auth state on page load
-supabase.auth.onAuthStateChange((event, session) => {
-  console.log('Auth state changed:', event);
-  if (event === 'SIGNED_IN') {
-    document.getElementById("message").textContent = "Welcome back!";
-  }
-});
