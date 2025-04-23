@@ -52,3 +52,5 @@ document.getElementById('signup-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   await signUp();
 });
+
+console.log('Supabase initialized:', supabase !== undefined);
