@@ -10,22 +10,19 @@
   <div class="container">
     <h2>Mineral Management System</h2>
 
-    <!-- Added separate forms for better structure -->
-    <div class="auth-section">
-      <input type="email" id="email" placeholder="Email" />
-      <input type="password" id="password" placeholder="Password" />
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
 
-      <button onclick="signUp()">Sign Up</button>
-      <button onclick="logIn()">Log In</button>
-      <button onclick="logOut()">Log Out</button>
-    </div>
+    <button onclick="signUp()">Sign Up</button>
+    <button onclick="logIn()">Log In</button>
+    <button onclick="logOut()">Log Out</button>
 
     <p id="message"></p>
   </div>
 
-  <!-- Load Supabase first -->
+  <!-- Load Supabase from CDN first -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <!-- Then your script -->
-  <script src="index.js"></script> <!-- Removed 'defer' to ensure proper order -->
+  <!-- Then load your script -->
+  <script src="index.js"></script>
 </body>
 </html>
