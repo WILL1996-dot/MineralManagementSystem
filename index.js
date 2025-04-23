@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('Supabase initialized:', window.supabase ? 'Success' : 'Failed');
   
   // Add event listeners
-  document.getElementById('signup-btn').addEventListener('click', signUp);
-  document.getElementById('login-btn').addEventListener('click', logIn);
-  document.getElementById('logout-btn').addEventListener('click', logOut);
+  document.getElementById('signup-btn').addEventListener('click', signup-btn);
+  document.getElementById('login-btn').addEventListener('click', login-btn);
+  document.getElementById('logout-btn').addEventListener('click', logout-btn);
 
   // Auth functions
   async function signUp() {
