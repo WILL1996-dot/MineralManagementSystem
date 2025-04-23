@@ -1,7 +1,3 @@
-
-// Proper initialization should look something like this:
-import { createClient } from '@supabase/supabase-js'
-
 const supabaseUrl = 'https://mudplvaigphenzayycsl.supabase.co'
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11ZHBsdmFpZ3BoZW56YXl5Y3NsIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0NTM2MzE4MSwiZXhwIjoyMDYwOTM5MTgxfQ.69aRSlFopKOh9lFjPz8GZiiwCwwLzm8DapFpxSjpkAE'
 
