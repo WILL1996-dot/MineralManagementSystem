@@ -2,27 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mineral Management Login</title>
-  <link rel="stylesheet" href="index.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Google Play Clone</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header>
+    <div class="logo">Play Store</div>
+    <input type="text" id="search" placeholder="Search apps & games..." />
+  </header>
+
   <div class="container">
-    <h2>Mineral Management System</h2>
+    <nav class="sidebar">
+      <ul>
+        <li onclick="filterCategory('All')">All</li>
+        <li onclick="filterCategory('Games')">Games</li>
+        <li onclick="filterCategory('Apps')">Apps</li>
+        <li onclick="filterCategory('Movies')">Movies</li>
+        <li onclick="filterCategory('Books')">Books</li>
+      </ul>
+    </nav>
 
-    <input type="email" id="email" placeholder="Email" required />
-    <input type="password" id="password" placeholder="Password" required />
-
-    <button onclick="signUp()" id="signup-btn">Sign Up</button>
-    <button onclick="logIn()" id="login-btn">Log In</button>
-    <button onclick="logOut()" id="logout-btn">Log Out</button>
-
-    <p id="message"></p>
+    <main id="main-content">
+      <!-- App Cards Render Here -->
+    </main>
   </div>
 
-  <!-- Load Supabase from CDN first -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <!-- Then load your script -->
-  <script src="index.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
