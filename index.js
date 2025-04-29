@@ -1,51 +1,73 @@
+const apps = [
+  {
+    name: "Super Game",
+    description: "Exciting action game.",
+    category: "Games",
+    image: "https://via.placeholder.com/300x150.png?text=Super+Game"
+  },
+  {
+    name: "Photo Editor Pro",
+    description: "Edit your photos like a pro.",
+    category: "Apps",
+    image: "https://via.placeholder.com/300x150.png?text=Photo+Editor+Pro"
+  },
+  {
+    name: "Movie Hub",
+    description: "Stream latest movies.",
+    category: "Movies",
+    image: "https://via.placeholder.com/300x150.png?text=Movie+Hub"
+  },
+  {
+    name: "Book Reader",
+    description: "Read millions of books.",
+    category: "Books",
+    image: "https://via.placeholder.com/300x150.png?text=Book+Reader"
+  }
+];
 
-// Correct spelling and order
-const supabaseUrl = 'https://mudplvaigphenzayycsl.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11ZHBsdmFpZ3BoZW56YXl5Y3NsIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0NTM2MzE4MSwiZXhwIjoyMDYwOTM5MTgxfQ.69aRSlFopKOh9lFjPz8GZiiwCwwLzm8DapFpxSjpkAE';
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+function loadApps(filter = "All") {
+  const container = document.getElementById("main-content");
+  container.innerHTML = "";
 
+  const filteredApps = filter === "All" ? apps : apps.filter(app => app.category === filter);
 
-// Sign Up Function
-async function signUp() {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
+  filteredApps.forEach(app => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <img src="${app.image}" alt="${app.name}" />
+      <div class="card-body">
+        <h3>${app.name}</h3>
+        <p>${app.description}</p>
+      </div>
+    `;
+    container.appendChild(card);
   });
-
-  if (error) {
-    alert('Error signing up: ' + error.message);
-  } else {
-    alert('Sign-up successful! Please check your email to confirm.');
-  }
 }
 
-// Log In Function
-async function logIn() {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
-
-  if (error) {
-    alert('Error logging in: ' + error.message);
-  } else {
-    alert('Login successful!');
-  }
+function filterCategory(cat) {
+  loadApps(cat);
 }
 
-// Log Out Function
-async function logOut() {
-  const { error } = await supabase.auth.signOut();
+document.getElementById("search").addEventListener("input", (e) => {
+  const searchTerm = e.target.value.toLowerCase();
+  const container = document.getElementById("main-content");
+  container.innerHTML = "";
 
-  if (error) {
-    alert('Error logging out: ' + error.message);
-  } else {
-    alert('Logged out successfully.');
-  }
-}
+  apps
+    .filter(app => app.name.toLowerCase().includes(searchTerm))
+    .forEach(app => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${app.image}" alt="${app.name}" />
+        <div class="card-body">
+          <h3>${app.name}</h3>
+          <p>${app.description}</p>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+});
+
+window.onload = () => loadApps();
